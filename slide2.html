@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Introduction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .slide-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease forwards 0.3s;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Hero layout */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards 0.5s;
+        }
+        
+        .hero-graphic {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            animation: slideInRight 0.8s ease forwards 0.7s;
+        }
+        
+        .hero-text h2 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        /* AI brain graphic */
+        .brain-graphic {
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+        
+        .brain-circle {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), rgba(46, 106, 255, 0.2));
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(46, 106, 255, 0.3);
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46, 106, 255, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(46, 106, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 106, 255, 0); }
+        }
+        
+        .brain-icon {
+            font-size: 6rem;
+            color: white;
+        }
+        
+        .orbit {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 2px dashed rgba(46, 106, 255, 0.3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 15s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .orbit-item {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .orbit-item:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .orbit-item:nth-child(2) {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+        
+        .orbit-item:nth-child(3) {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .orbit-item:nth-child(4) {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        
+        /* Vision box */
+        .vision-box {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(46, 106, 255, 0.1);
+            padding: 30px;
+            border-left: 5px solid var(--secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 1s;
+        }
+        
+        .vision-box:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 50px rgba(46, 106, 255, 0.15);
+        }
+        
+        .vision-box h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .vision-box h3 i {
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+        
+        .vision-box p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+        
+        .vision-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 10rem;
+            color: rgba(46, 106, 255, 0.05);
+            z-index: 0;
+            transform: translate(20%, -20%);
+        }
+        
+        /* Background decoration */
+        .bg-decoration {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(46, 106, 255, 0.05), rgba(0, 229, 176, 0.05));
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            z-index: -1;
+        }
+        
+        .bg-decoration-2 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.05), rgba(255, 158, 0, 0.05));
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background decorations -->
+    <div class="bg-decoration"></div>
+    <div class="bg-decoration-2"></div>
+    
+    <div class="slide-header">
+        <div class="slide-number">02</div>
+        <h1 class="slide-title">PaedagogIA</h1>
+        <h2 class="slide-subtitle">Generative AI serving educational excellence</h2>
+    </div>
+    <div class="slide-content">
+        <!-- Hero Section with Text and Graphic -->
+        <div class="hero-section">
+            <div class="hero-text">
+                <h2>Beyond Success, Towards Excellence</h2>
+                <p><strong>A high success rate often masks a concerning reality:</strong> many students progress through school while accumulating knowledge gaps, sometimes invisible during exams. These unaddressed difficulties worsen over time, hindering their progress years after they first appear.</p>
+                <p><strong>PaedagogIA aims not just for success for all, but for excellence:</strong> our generative AI could precisely identify weaknesses, even long-standing ones, and potentially offer personalized remediation to help each student consolidate their foundations and reach their full potential.</p>
+            </div>
+            
+            <div class="hero-graphic">
+                <div class="brain-graphic">
+                    <div class="orbit">
+                        <div class="orbit-item"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="orbit-item"><i class="fas fa-robot"></i></div>
+                        <div class="orbit-item"><i class="fas fa-chart-line"></i></div>
+                        <div class="orbit-item"><i class="fas fa-user-graduate"></i></div>
+                    </div>
+                    <div class="brain-circle">
+                        <i class="fas fa-brain brain-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vision Box -->
+        <div class="vision-box">
+            <div class="vision-bg">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3><i class="fas fa-compass"></i> Our Vision</h3>
+            <p>An educational system where each difficulty is identified at its source and addressed in a personalized way, allowing every student to achieve academic excellence, regardless of their starting point.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - The Daily Challenge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        .slide-content h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .slide-content h3 i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .slide-content p {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        .note {
+            font-style: italic;
+            opacity: 0.7;
+            margin-top: 15px;
+            font-size: 1rem;
+            padding-left: 15px;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .box {
+            background-color: #F5F8FF;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+        
+        .box i.icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2.5rem;
+            color: rgba(46, 106, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .box:hover i.icon {
+            transform: scale(1.2) rotate(10deg);
+            color: rgba(46, 106, 255, 0.2);
+        }
+        
+        .box h4 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .box h4 i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Staggered animation for boxes */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .box:nth-child(1) {
+            animation: slideInUp 0.5s ease-out 0.1s forwards;
+            opacity: 0;
+        }
+        
+        .box:nth-child(2) {
+            animation: slideInUp 0.5s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .box:nth-child(3) {
+            animation: slideInUp 0.5s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">04</div>
+        <h1 class="slide-title">The Daily Challenge</h1>
+    </div>
+    <div class="slide-content">
+        <h3><i class="fas fa-mountain"></i> Teachers face three major challenges:</h3>
+        
+        <div class="box">
+            <i class="icon fas fa-search"></i>
+            <h4><i class="fas fa-magnifying-glass"></i> 1. Lack of precise diagnostic tools</h4>
+            <p>Identifying individual knowledge gaps with precision is a significant challenge, especially when these gaps date back several years.</p>
+        </div>
+        
+        <div class="box">
+            <i class="icon fas fa-puzzle-piece"></i>
+            <h4><i class="fas fa-clone"></i> 2. Generic remediation resources</h4>
+            <p>Available tools are not personalized to each student's specific needs, limiting the effectiveness of interventions.</p>
+        </div>
+        
+        <div class="box">
+            <i class="icon fas fa-layer-group"></i>
+            <h4><i class="fas fa-chart-pie"></i> 3. Compounding difficulties</h4>
+            <p>Unresolved gaps create difficulties that accumulate over time, compromising future learning.</p>
+        </div>
+        
+        <p class="note"><i class="fas fa-lightbulb"></i> Example: Secondary school equation failure often traces back to primary school concepts that were never mastered.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Environmental Impact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Introduction text */
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .intro-text p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        /* Environmental initiatives container */
+        .env-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 0 auto;
+            max-width: 1100px;
+        }
+        
+        /* Environmental cards */
+        .env-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .env-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .env-card:nth-child(1) {
+            animation: slideUp 0.5s ease-out 0.1s forwards;
+        }
+        
+        .env-card:nth-child(2) {
+            animation: slideUp 0.5s ease-out 0.3s forwards;
+        }
+        
+        .env-card:nth-child(3) {
+            animation: slideUp 0.5s ease-out 0.5s forwards;
+        }
+        
+        .env-header {
+            padding: 20px;
+            background: linear-gradient(to right, var(--success), #4EEDC9);
+            color: white;
+        }
+        
+        .env-icon-wrapper {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .env-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .env-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .env-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .env-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex: 1;
+        }
+        
+        .env-approach {
+            margin-top: auto;
+            background: rgba(0, 229, 176, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .env-approach-title {
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        
+        .env-approach-title i {
+            font-size: 0.9rem;
+        }
+        
+        /* Commitment section */
+        .commitment-section {
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(to right, rgba(0, 229, 176, 0.05), rgba(46, 106, 255, 0.05));
+            border-radius: 15px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.7s forwards;
+        }
+        
+        .commitment-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .commitment-title i {
+            color: var(--success);
+        }
+        
+        .commitment-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">11</div>
+        <h1 class="slide-title">Environmental Considerations</h1>
+    </div>
+    <div class="slide-content">
+        <div class="intro-text">
+            <p>We believe educational innovation should include environmental responsibility. Here's how we're approaching this challenge:</p>
+        </div>
+        
+        <div class="env-container">
+            <!-- Environmental Card 1: Data Hosting -->
+            <div class="env-card">
+                <div class="env-header">
+                    <div class="env-icon-wrapper">
+                        <div class="env-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                    </div>
+                    <h3 class="env-title">Responsible Data Hosting</h3>
+                </div>
+                <div class="env-content">
+                    <p class="env-description">We plan to prioritize local Belgian and European data hosting solutions that align with both privacy and environmental values.</p>
+                    <div class="env-approach">
+                        <div class="env-approach-title">
+                            <i class="fas fa-leaf"></i> Our Approach
+                        </div>
+                        <p>Looking for GDPR-compliant hosting options that utilize renewable energy where available, balancing data sovereignty with environmental impact.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Environmental Card 2: Energy Efficiency -->
+            <div class="env-card">
+                <div class="env-header">
+                    <div class="env-icon-wrapper">
+                        <div class="env-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                    </div>
+                    <h3 class="env-title">Energy-Efficient AI</h3>
+                </div>
+                <div class="env-content">
+                    <p class="env-description">Rather than training entirely new models, we aim to fine-tune existing AI technologies to significantly reduce computational resource needs.</p>
+                    <div class="env-approach">
+                        <div class="env-approach-title">
+                            <i class="fas fa-leaf"></i> Our Approach
+                        </div>
+                        <p>This methodological choice could reduce energy usage compared to building models from scratch, supporting climate goals while maintaining performance.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Environmental Card 3: Data Privacy -->
+            <div class="env-card">
+                <div class="env-header">
+                    <div class="env-icon-wrapper">
+                        <div class="env-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                    <h3 class="env-title">Privacy-Respecting Design</h3>
+                </div>
+                <div class="env-content">
+                    <p class="env-description">Our commitment to privacy by design includes prioritizing data minimization and local processing where possible, which has environmental benefits too.</p>
+                    <div class="env-approach">
+                        <div class="env-approach-title">
+                            <i class="fas fa-leaf"></i> Our Approach
+                        </div>
+                        <p>Local-first architectures reduce constant data transfer needs, decreasing network energy consumption while enhancing student data protection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Commitment section -->
+        <div class="commitment-section">
+            <h3 class="commitment-title"><i class="fas fa-seedling"></i> Our Commitment</h3>
+            <p class="commitment-text">We're exploring and implementing these approaches while recognizing that sustainable technology is an evolving journey. We'll continue to seek improvements as technologies and best practices advance.</p>
+        </div>
+    </div>
+</body>
+</html>

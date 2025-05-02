@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Regional Impact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Introduction text */
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .intro-text p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        /* Regional impact sections */
+        .impact-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Section card */
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: row;
+            opacity: 0;
+            transform: translateX(-20px);
+            border: 1px solid #f0f0f0;
+        }
+        
+        @keyframes slideInFromLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .section-card:nth-child(1) {
+            animation: slideInFromLeft 0.6s ease-out 0.1s forwards;
+        }
+        
+        .section-card:nth-child(2) {
+            animation: slideInFromLeft 0.6s ease-out 0.3s forwards;
+        }
+        
+        .section-card:nth-child(3) {
+            animation: slideInFromLeft 0.6s ease-out 0.5s forwards;
+        }
+        
+        .section-card:hover {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+        
+        .section-icon {
+            width: 80px;
+            min-width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, var(--secondary), #1D59E5);
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .section-content {
+            padding: 20px;
+            flex: 1;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .section-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .potential-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .potential-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(46, 106, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        
+        .potential-text {
+            font-size: 0.95rem;
+            flex: 1;
+        }
+        
+        /* Brussels visualization */
+        .brussels-visual {
+            margin: 40px auto 0;
+            width: 100%;
+            max-width: 800px;
+            height: 200px;
+            background: linear-gradient(to right, rgba(46, 106, 255, 0.03), rgba(0, 229, 176, 0.03));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.7s forwards;
+        }
+        
+        .visual-map {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iMjAwIj48cGF0aCBkPSJNMjAwLDEyMCBDMjUwLDgwIDMwMCw5MCA0MDAsOTUgQzUwMCwxMDAgNjAwLDEyMCA2NTAsMTAwIiBzdHJva2U9IiMyRTZBRkYiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiAvPjxjaXJjbGUgY3g9IjMwMCIgY3k9IjkwIiByPSI1IiBmaWxsPSIjMkU2QUZGIiAvPjxjaXJjbGUgY3g9IjQwMCIgY3k9Ijk1IiByPSI1IiBmaWxsPSIjMkU2QUZGIiAvPjxjaXJjbGUgY3g9IjUwMCIgY3k9IjEwMCIgcj0iNSIgZmlsbD0iIzJFNkFGRiIgLz48Y2lyY2xlIGN4PSI2MDAiIGN5PSIxMjAiIHI9IjUiIGZpbGw9IiMyRTZBRkYiIC8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iODAiIHI9IjUiIGZpbGw9IiMyRTZBRkYiIC8+PGNpcmNsZSBjeD0iNjUwIiBjeT0iMTAwIiByPSI1IiBmaWxsPSIjMkU2QUZGIiAvPjwvc3ZnPg==');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .visual-label {
+            position: absolute;
+            font-size: 0.8rem;
+            color: #666;
+            bottom: 10px;
+            right: 15px;
+        }
+        
+        .visual-text {
+            position: relative;
+            z-index: 1;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            padding: 0 20px;
+            max-width: 600px;
+        }
+        
+        .visual-text span {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">12</div>
+        <h1 class="slide-title">Regional Contributions</h1>
+    </div>
+    <div class="slide-content">
+        <div class="intro-text">
+            <p>PaedagogIA hopes to contribute to the Brussels ecosystem while addressing educational challenges.</p>
+        </div>
+        
+        <div class="impact-sections">
+            <!-- Section 1: EdTech Development -->
+            <div class="section-card">
+                <div class="section-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="section-content">
+                    <h3 class="section-title"><i class="fas fa-flag"></i> Ethical EdTech Development</h3>
+                    <p class="section-description">Working toward responsible applications of AI for practical educational challenges, supporting Brussels' growing reputation in ethical technology innovation.</p>
+                    <div class="potential-item">
+                        <div class="potential-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="potential-text">
+                            Brussels' multilingual, multicultural character provides a valuable testing environment for educational tools with broader applicability.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 2: Innovation Networks -->
+            <div class="section-card">
+                <div class="section-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <div class="section-content">
+                    <h3 class="section-title"><i class="fas fa-project-diagram"></i> Collaborative Innovation</h3>
+                    <p class="section-description">Building bridges between educators, technologists, and policymakers, while engaging with local institutions like the AI for the Common Good Institute (FARI).</p>
+                    <div class="potential-item">
+                        <div class="potential-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="potential-text">
+                            Fostering a community of practice that connects academic institutions, schools, tech companies, and public authorities to collaborate on educational solutions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Knowledge Economy -->
+            <div class="section-card">
+                <div class="section-icon">
+                    <i class="fas fa-city"></i>
+                </div>
+                <div class="section-content">
+                    <h3 class="section-title"><i class="fas fa-briefcase"></i> Knowledge Economy Support</h3>
+                    <p class="section-description">If successful, our project could contribute modestly to the region's knowledge economy through specialized roles in educational AI and learning analytics.</p>
+                    <div class="potential-item">
+                        <div class="potential-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="potential-text">
+                            Potential to help connect educational institutions with the growing EdTech sector to develop and retain skilled professionals in the region.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Brussels Visualization -->
+        <div class="brussels-visual">
+            <div class="visual-map"></div>
+            <div class="visual-text">
+                Supporting <span>Brussels'</span> vision to be a leader in technology that benefits society
+            </div>
+            <div class="visual-label">Brussels Innovation Ecosystem</div>
+        </div>
+    </div>
+</body>
+</html>

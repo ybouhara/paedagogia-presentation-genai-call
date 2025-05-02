@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Interactive Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .intro-text p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        .dashboard-preview {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .dashboard-icon {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .dashboard-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .dashboard-description {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .demo-link {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(46, 106, 255, 0.3);
+        }
+        
+        .demo-link:hover {
+            background: #1d59e5;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(46, 106, 255, 0.4);
+        }
+        
+       
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">08</div>
+        <h1 class="slide-title">Interactive Dashboard</h1>
+        <div class="slide-subtitle">Teacher Interface</div>
+    </div>
+    <div class="slide-content">
+        <div class="intro-text">
+            <p>An interactive dashboard gives teachers a clear view of students' learning paths and AI recommendations.</p>
+        </div>
+        
+        <div class="dashboard-preview">
+            <div class="dashboard-icon">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+            <h2 class="dashboard-title">GenAI Math Companion</h2>
+            <p class="dashboard-description">Our interface allows teachers to track student progress, identify fundamental gaps, and receive personalized recommendations.</p>
+            
+            <!-- URL Link to your artifact - replace with your actual URL -->
+            <a href="https://claude.ai/public/artifacts/18295c10-6fd5-4a8f-be2e-1a7bde7a0ef3" target="_blank" class="demo-link">
+                <i class="fas fa-external-link-alt"></i> View Interactive Demo
+            </a>
+           
+        </div>
+    </div>
+</body>
+</html>

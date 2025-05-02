@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Thank You</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Thank you message */
+        .thank-you-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+        }
+        
+        .thank-you-message {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.3s;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .thank-you-message::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        /* Slogan */
+        .slogan {
+            font-size: 1.6rem;
+            font-style: italic;
+            margin: 40px 0 30px;
+            color: var(--accent);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.6s;
+        }
+        
+        .slogan::before, .slogan::after {
+            content: '"';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.2;
+            font-family: 'Georgia', serif;
+        }
+        
+        .slogan::before {
+            left: -20px;
+            top: -20px;
+        }
+        
+        .slogan::after {
+            right: -20px;
+            bottom: -40px;
+        }
+        
+        /* Supporters section */
+        .supporters-section {
+            margin-top: 30px;
+            width: 100%;
+        }
+        
+        .supporters-title {
+            font-size: 1.6rem;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.9s;
+        }
+        
+        .supporters-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .supporter-card {
+            background: white;
+            border-radius: 15px;
+            width: 250px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #eee;
+        }
+        
+        .supporter-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .supporter-card:nth-child(1) {
+            animation: supporterFadeIn 0.8s ease-out 1.2s forwards;
+        }
+        
+        .supporter-card:nth-child(2) {
+            animation: supporterFadeIn 0.8s ease-out 1.4s forwards;
+        }
+        
+        .supporter-card:nth-child(3) {
+            animation: supporterFadeIn 0.8s ease-out 1.6s forwards;
+        }
+        
+        @keyframes supporterFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .supporter-logo {
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .supporter-card:hover .supporter-logo {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .supporter-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .supporter-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .supporter-role {
+            font-size: 0.95rem;
+            color: var(--secondary);
+            text-align: center;
+            line-height: 1.4;
+        }
+        
+        /* Logo specific styles */
+        .innoviris-logo {
+            background: white;
+        }
+        
+        .fari-logo {
+            background: white;
+        }
+        
+        .sustain-logo {
+            background: #26237A;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">15</div>
+        <h1 class="slide-title">Thank You</h1>
+    </div>
+    <div class="slide-content">
+        <div class="thank-you-container">
+            <h2 class="thank-you-message">Thank You for Your Attention</h2>
+            
+            <p class="slogan">"Excellence has no level"</p>
+            
+            <div class="supporters-section">
+                <div class="supporters-container">
+                    <!-- Supporter 1 - Innoviris -->
+                    <div class="supporter-card">
+                        <div class="supporter-logo innoviris-logo">
+                            <img src="images/innoviris-logo.png" alt="Innoviris">
+                            <!-- Replace with your actual image path -->
+                        </div>
+                        <div class="supporter-name">Innoviris</div>
+                    </div>
+                    
+                    <!-- Supporter 2 - FARI -->
+                    <div class="supporter-card">
+                        <div class="supporter-logo fari-logo">
+                            <img src="images/fari-logo.png" alt="FARI Institute">
+                            <!-- Replace with your actual image path -->
+                        </div>
+                        <div class="supporter-name">FARI Institute</div>
+                        
+                    </div>
+                    
+                    <!-- Supporter 3 - sustain.brussels -->
+                    <div class="supporter-card">
+                        <div class="supporter-logo sustain-logo">
+                            <img src="images/sustain-logo.png" alt="sustain.brussels">
+                            <!-- Replace with your actual image path -->
+                        </div>
+                        <div class="supporter-name">sustain.brussels</div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

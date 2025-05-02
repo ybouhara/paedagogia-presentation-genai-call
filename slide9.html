@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Teacher Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Central teacher graphic */
+        .teacher-central {
+            text-align: center;
+            margin: 20px 0 40px;
+            position: relative;
+        }
+        
+        .teacher-icon {
+            width: 120px;
+            height: 120px;
+            background: var(--secondary);
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(46, 106, 255, 0.3);
+        }
+        
+        .teacher-icon i {
+            font-size: 3.5rem;
+            color: white;
+        }
+        
+        .teacher-title {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .teacher-subtitle {
+            max-width: 600px;
+            margin: 10px auto;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+        
+        /* Pulse animation for the central icon */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46, 106, 255, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(46, 106, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 106, 255, 0); }
+        }
+        
+        .teacher-icon {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Support benefits grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        /* Sequential animation for cards */
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .benefit-card:nth-child(1) {
+            animation: slideUp 0.5s ease-out 0.1s forwards;
+        }
+        
+        .benefit-card:nth-child(2) {
+            animation: slideUp 0.5s ease-out 0.2s forwards;
+        }
+        
+        .benefit-card:nth-child(3) {
+            animation: slideUp 0.5s ease-out 0.3s forwards;
+        }
+        
+        .benefit-card:nth-child(4) {
+            animation: slideUp 0.5s ease-out 0.4s forwards;
+        }
+        
+        .benefit-card:nth-child(5) {
+            animation: slideUp 0.5s ease-out 0.5s forwards;
+        }
+        
+        .benefit-card:nth-child(6) {
+            animation: slideUp 0.5s ease-out 0.6s forwards;
+        }
+        
+        .benefit-icon {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary), #1D59E5);
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        .benefit-content {
+            padding: 20px;
+        }
+        
+        .benefit-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .benefit-title i {
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+        
+        .benefit-description {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .benefit-example {
+            background: rgba(46, 106, 255, 0.05);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--secondary);
+            font-size: 0.85rem;
+        }
+        
+        .benefit-example strong {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        
+        /* Testimonial */
+        .testimonial {
+            margin-top: 40px;
+            background: linear-gradient(135deg, rgba(46, 106, 255, 0.05), rgba(0, 229, 176, 0.05));
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            border-top: 3px solid;
+            border-image: linear-gradient(to right, var(--secondary), var(--success));
+            border-image-slice: 1;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.8s forwards;
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        .author-info p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">09</div>
+        <h1 class="slide-title">Teacher Support</h1>
+    </div>
+    <div class="slide-content">
+        <!-- Central Teacher Graphic -->
+        <div class="teacher-central">
+            <div class="teacher-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h2 class="teacher-title">Empowering Teachers, Not Replacing Them</h2>
+            <p class="teacher-subtitle">PaedagogIA amplifies teacher effectiveness by providing tools that save time and enhance personalized instruction.</p>
+        </div>
+        
+        <!-- Benefits Grid -->
+        <div class="benefits-grid">
+            <!-- Strategic Grouping -->
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">
+                        <i class="fas fa-check-circle"></i> Strategic Grouping
+                    </h3>
+                    <p class="benefit-description">
+                        Organization of students with complementary needs to optimize teaching time.
+                    </p>
+                    <div class="benefit-example">
+                        <strong>Example:</strong> Automatically identify students struggling with similar math concepts for targeted group instruction.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Intervention Prioritization -->
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">
+                        <i class="fas fa-check-circle"></i> Intervention Prioritization
+                    </h3>
+                    <p class="benefit-description">
+                        Identification of critical gaps requiring immediate attention.
+                    </p>
+                    <div class="benefit-example">
+                        <strong>Example:</strong> Highlight foundational concepts that, if not addressed, will impact multiple future learning outcomes.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Resource Optimization -->
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-cubes"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">
+                        <i class="fas fa-check-circle"></i> Resource Optimization
+                    </h3>
+                    <p class="benefit-description">
+                        Efficient allocation of time and available pedagogical tools.
+                    </p>
+                    <div class="benefit-example">
+                        <strong>Example:</strong> Auto-generate targeted worksheets for remediation while teacher works with students needing direct instruction.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Actionable Insights -->
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">
+                        <i class="fas fa-check-circle"></i> Actionable Insights
+                    </h3>
+                    <p class="benefit-description">
+                        Relevant and usable data rather than overwhelming information.
+                    </p>
+                    <div class="benefit-example">
+                        <strong>Example:</strong> Convert raw assessment data into clear recommendations for next steps in instruction.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Class Time Management -->
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">
+                        <i class="fas fa-check-circle"></i> Class Time Management
+                    </h3>
+                    <p class="benefit-description">
+                        Suggestions for optimal organization of pedagogical activities.
+                    </p>
+                    <div class="benefit-example">
+                        <strong>Example:</strong> Recommend balanced lesson structure based on class needs identified through ongoing assessment.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Complement, Not Replacement -->
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">
+                        <i class="fas fa-check-circle"></i> Complement, Not Replacement
+                    </h3>
+                    <p class="benefit-description">
+                        Benefits for teachers without seeking to replace them.
+                    </p>
+                    <div class="benefit-example">
+                        <strong>Example:</strong> Handle routine content generation tasks while teachers focus on relationship-building and complex instruction.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Contractor Contributions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+            --info: #55AAEE;
+            --wp1: #55AAEE;
+            --wp2: #5CCA7B;
+            --wp3: #E9954E;
+            --moobytes: #7047EB;
+            --bedigit: #3BAA6F;
+            --hayolabs: #FF5555;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Introduction text */
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .intro-text p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        /* Main container for the contribution visual */
+        .contribution-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        /* Work Packages section */
+        .wp-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: stretch;
+        }
+        
+        .wp-header {
+            width: 180px;
+            min-width: 180px;
+            background: linear-gradient(135deg, var(--wp1), var(--wp1));
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        
+        .wp-section:nth-child(2) .wp-header {
+            background: linear-gradient(135deg, var(--wp2), var(--wp2));
+        }
+        
+        .wp-section:nth-child(3) .wp-header {
+            background: linear-gradient(135deg, var(--wp3), var(--wp3));
+        }
+        
+        .wp-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .wp-duration {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            background: rgba(255,255,255,0.2);
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .wp-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        /* Company container */
+        .companies-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .company-card {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideIn 0.5s ease-out forwards;
+            animation-delay: calc(var(--index) * 0.1s);
+        }
+        
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .company-header {
+            padding: 10px 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+        
+        .staff-count {
+            margin-left: 5px; 
+            font-size: 0.8rem; 
+            background: rgba(255,255,255,0.3); 
+            padding: 2px 8px; 
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        
+        .hayolabs .company-header {
+            background: var(--hayolabs);
+        }
+        
+        .moobytes .company-header {
+            background: var(--moobytes);
+        }
+        
+        .bedigit .company-header {
+            background: var(--bedigit);
+        }
+        
+        .company-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .company-content {
+            padding: 15px;
+        }
+        
+        .company-role {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+        
+        .contribution-list {
+            list-style: none;
+        }
+        
+        .contribution-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .contribution-icon {
+            color: var(--secondary);
+            font-size: 0.8rem;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        
+        .hayolabs .contribution-icon {
+            color: var(--hayolabs);
+        }
+        
+        .moobytes .contribution-icon {
+            color: var(--moobytes);
+        }
+        
+        .bedigit .contribution-icon {
+            color: var(--bedigit);
+        }
+        
+        /* Legend */
+        .legend-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 4px;
+        }
+        
+        /* Budget breakdown */
+        .budget-section {
+            margin-top: 40px;
+            background: linear-gradient(135deg, rgba(46, 106, 255, 0.05), rgba(0, 229, 176, 0.05));
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.8s forwards;
+            border-top: 3px solid;
+            border-image: linear-gradient(to right, var(--secondary), var(--success));
+            border-image-slice: 1;
+        }
+        
+        .budget-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .budget-title i {
+            color: var(--accent);
+        }
+        
+        .budget-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .budget-card {
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .budget-card-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+        
+        .budget-amount {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .budget-percentage {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Coordination section */
+        .coordination-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .coordination-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .coordination-methods {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .coordination-method {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            min-width: 200px;
+            flex: 1;
+            max-width: 300px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+            animation-delay: calc(var(--coord-index) * 0.2s);
+        }
+        
+        .coordination-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">17</div>
+        <h1 class="slide-title">Contractor & Team Contributions</h1>
+        <div class="slide-subtitle">Team Structure, Work Package Responsibilities & Budget Allocation</div>
+    </div>
+    <div class="slide-content">
+        <div class="intro-text">
+            <p>A collaborative approach across all partners with a total project effort of <strong>6 man-months</strong> across 8 calendar months</p>
+        </div>
+        
+        <div class="contribution-container">
+            <!-- WP1: Analysis & Foundation -->
+            <div class="wp-section">
+                <div class="wp-header">
+                    <div class="wp-title">WP1: Analysis & Foundation</div>
+                    <div class="wp-duration">3 months | 2 man-months</div>
+                </div>
+                <div class="wp-content">
+                    <div class="companies-container">
+                        <!-- HAYO Labs -->
+                        <div class="company-card hayolabs" style="--index: 1;">
+                            <div class="company-header">
+                                <div class="company-icon"><i class="fas fa-building"></i></div>
+                                HAYO Labs & Karim <span class="staff-count">2 people</span>
+                            </div>
+                            <div class="company-content">
+                                <div class="company-role">Primary Lead Team</div>
+                                <ul class="contribution-list">
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>AI Architecture Design & Project Setup</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>CEB Exam Corpus Processing Pipeline</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Competency Relationship Mapping</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Moobytes -->
+                        <div class="company-card moobytes" style="--index: 2;">
+                            <div class="company-header">
+                                <div class="company-icon"><i class="fas fa-building"></i></div>
+                                Moobytes SRL <span class="staff-count">1 person</span>
+                            </div>
+                            <div class="company-content">
+                                <div class="company-role">Technical Support</div>
+                                <ul class="contribution-list">
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Frontend Development for CEB Visualization</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Implementation of User Interface Prototypes</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Be-Digit -->
+                        <div class="company-card bedigit" style="--index: 3;">
+                            <div class="company-header">
+                                <div class="company-icon"><i class="fas fa-building"></i></div>
+                                Be-Digit ASBL <span class="staff-count">4 people</span>
+                            </div>
+                            <div class="company-content">
+                                <div class="company-role">Advisory</div>
+                                <ul class="contribution-list">
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>AI Documentation Standards Review</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Consultation on Agent Architecture Design</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WP2: Diagnostic Assessment -->
+            <div class="wp-section">
+                <div class="wp-header">
+                    <div class="wp-title">WP2: Diagnostic Assessment</div>
+                    <div class="wp-duration">2 months | 2 man-months</div>
+                </div>
+                <div class="wp-content">
+                    <div class="companies-container">
+                        <!-- HAYO Labs -->
+                        <div class="company-card hayolabs" style="--index: 4;">
+                            <div class="company-header">
+                                <div class="company-icon"><i class="fas fa-building"></i></div>
+                                HAYO Labs <span style="margin-left: 5px; font-size: 0.8rem; background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 4px;">2 people</span>
+                            </div>
+                            <div class="company-content">
+                                <div class="company-role">Primary Lead</div>
+                                <ul class="contribution-list">
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>CEB Analysis Engine Development</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Assessment Generator Design</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Validation Protocol Development</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Moobytes -->
+                        <div class="company-card moobytes" style="--index: 5;">
+                            <div class="company-header">
+                                <div class="company-icon"><i class="fas fa-building"></i></div>
+                                Moobytes SRL <span class="staff-count">1 person</span>
+                            </div>
+                            <div class="company-content">
+                                <div class="company-role">Technical Implementation</div>
+                                <ul class="contribution-list">
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Student Portal Development</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>API Integration Between Components</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>OCR Quality Control Implementation</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Be-Digit -->
+                        <div class="company-card bedigit" style="--index: 6;">
+                            <div class="company-header">
+                                <div class="company-icon"><i class="fas fa-building"></i></div>
+                                Be-Digit ASBL <span class="staff-count">4 people</span>
+                            </div>
+                            <div class="company-content">
+                                <div class="company-role">AI Development & Testing</div>
+                                <ul class="contribution-list">
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Response Analysis AI Agent Optimization</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Misconception Identification Algorithm</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Testing Coordination with Educators</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WP3: Integration & Evaluation -->
+            <div class="wp-section">
+                <div class="wp-header">
+                    <div class="wp-title">WP3: Integration & Evaluation</div>
+                    <div class="wp-duration">3 months | 2 man-months</div>
+                </div>
+                <div class="wp-content">
+                    <div class="companies-container">
+                        <!-- HAYO Labs -->
+                        <div class="company-card hayolabs" style="--index: 7;">
+                            <div class="company-header">
+                                <div class="company-icon"><i class="fas fa-building"></i></div>
+                                HAYO Labs & Karim <span class="staff-count">2 people</span>
+                            </div>
+                            <div class="company-content">
+                                <div class="company-role">Primary Lead & Evaluation</div>
+                                <ul class="contribution-list">
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Exercise Generation Agent Design</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>System Orchestration Architecture</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Final Feasibility Analysis & Reporting</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Moobytes -->
+                        <div class="company-card moobytes" style="--index: 8;">
+                            <div class="company-header">
+                                <div class="company-icon"><i class="fas fa-building"></i></div>
+                                Moobytes SRL <span class="staff-count">1 person</span>
+                            </div>
+                            <div class="company-content">
+                                <div class="company-role">Technical Integration</div>
+                                <ul class="contribution-list">
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Unified Frontend Implementation</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Teacher Dashboard Development</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Endpoint Integration & User Experience</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Be-Digit -->
+                        <div class="company-card bedigit" style="--index: 9;">
+                            <div class="company-header">
+                                <div class="company-icon"><i class="fas fa-building"></i></div>
+                                Be-Digit ASBL <span class="staff-count">4 people</span>
+                            </div>
+                            <div class="company-content">
+                                <div class="company-role">Advanced AI & Evaluation</div>
+                                <ul class="contribution-list">
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>RAG Architecture Optimization</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Multilingual Model Selection & Fine-tuning</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>Verification System Design & Implementation</div>
+                                    </li>
+                                    <li class="contribution-item">
+                                        <div class="contribution-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div>User Acceptance Testing Coordination</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend-section">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--wp1);"></div>
+                <div>WP1: Analysis & Foundation</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--wp2);"></div>
+                <div>WP2: Diagnostic Assessment</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--wp3);"></div>
+                <div>WP3: Integration & Evaluation</div>
+            </div>
+        </div>
+        
+        <!-- Budget Section -->
+        <div class="budget-section">
+            <h3 class="budget-title"><i class="fas fa-chart-pie"></i> Budget & Resource Allocation</h3>
+            
+            <div class="budget-cards">
+                <div class="budget-card">
+                    <div class="budget-card-title">Core Team Staffing</div>
+                    <div class="budget-amount">€16,200</div>
+                    <div class="budget-percentage">22.9% of total</div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-card-title">Operating & General</div>
+                    <div class="budget-amount">€9,620</div>
+                    <div class="budget-percentage">13.6% of total</div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-card-title">Moobytes SRL</div>
+                    <div class="budget-amount">€10,000</div>
+                    <div class="budget-percentage">14.1% of total</div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-card-title">Be-Digit ASBL</div>
+                    <div class="budget-amount">€35,000</div>
+                    <div class="budget-percentage">49.4% of total</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; text-align: left; background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px; max-width: 900px; margin-left: auto; margin-right: auto;">
+                <div style="font-weight: 600; margin-bottom: 10px; color: var(--primary);">Team Staffing & Effort Allocation:</div>
+                <ul style="list-style-type: disc; padding-left: 20px; font-size: 0.95rem;">
+                    <li><b>Core Team (2 people)</b>: Youcef Bouharaoua (HAYO Labs - AI Research Lead, 30%) and Karim Ehab (Independent - Education & AI Strategist, 32%) - contributing approximately 4.8 man-months over the 8-month project</li>
+                    <li><b>Moobytes SRL (1 person)</b>: Working part-time across specific technical deliverables, primarily focused on frontend implementation and UI development</li>
+                    <li><b>Be-Digit ASBL (4 people)</b>: Team providing specialized expertise as needed rather than full-time dedication, with various specialists contributing to different aspects of AI engineering</li>
+                </ul>
+                <div style="margin-top: 10px; font-size: 0.95rem;"><b>Note:</b> The total project effort of 6 man-months is distributed across all teams, with contractors providing specialized expertise on an as-needed basis rather than full-time dedication.</div>
+            </div>
+        </div>
+        
+        <!-- Coordination Section -->
+        <div class="coordination-section">
+            <h3 class="coordination-title">Team Coordination Methods</h3>
+            
+            <div class="coordination-methods">
+                <div class="coordination-method" style="--coord-index: 1;">
+                    <div class="coordination-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div>Weekly virtual synchronization meetings</div>
+                </div>
+                <div class="coordination-method" style="--coord-index: 2;">
+                    <div class="coordination-icon">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                    <div>Shared documentation repository</div>
+                </div>
+                <div class="coordination-method" style="--coord-index: 3;">
+                    <div class="coordination-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div>Structured handoff processes</div>
+                </div>
+                <div class="coordination-method" style="--coord-index: 4;">
+                    <div class="coordination-icon">
+                        <i class="fas fa-check-square"></i>
+                    </div>
+                    <div>Joint validation sessions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

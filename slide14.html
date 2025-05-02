@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Conclusion & Vision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        .box {
+            background-color: #F5F8FF;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+        
+        .box i.icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2.5rem;
+            color: rgba(46, 106, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .box:hover i.icon {
+            transform: scale(1.2) rotate(10deg);
+            color: rgba(46, 106, 255, 0.2);
+        }
+        
+        .conclusion {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .conclusion h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .conclusion h3 i {
+            color: var(--accent);
+        }
+        
+        .slogan {
+            font-size: 2rem;
+            font-style: italic;
+            margin: 40px 0;
+            color: var(--accent);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .slogan::before, .slogan::after {
+            content: '"';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.2;
+            font-family: 'Georgia', serif;
+        }
+        
+        .slogan::before {
+            left: -20px;
+            top: -20px;
+        }
+        
+        .slogan::after {
+            right: -20px;
+            bottom: -40px;
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Vision cards */
+        .vision-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .vision-card {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .vision-header {
+            background: linear-gradient(135deg, var(--secondary), #1D59E5);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .vision-content {
+            padding: 25px;
+        }
+        
+        .vision-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(46, 106, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--secondary);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .vision-card:hover .vision-icon {
+            transform: scale(1.1) rotate(10deg);
+            background: rgba(46, 106, 255, 0.15);
+        }
+        
+        .vision-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .vision-timeline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .timeline-phase {
+            text-align: center;
+            padding: 0 15px;
+        }
+        
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .timeline-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        /* Staggered animation */
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .vision-card:nth-child(1) {
+            animation: slideUp 0.5s ease-out 0.1s forwards;
+        }
+        
+        .vision-card:nth-child(2) {
+            animation: slideUp 0.5s ease-out 0.3s forwards;
+        }
+        
+        .vision-card:nth-child(3) {
+            animation: slideUp 0.5s ease-out 0.5s forwards;
+        }
+        
+        /* Final call to action */
+        .cta {
+            background: linear-gradient(135deg, var(--secondary), #1D59E5);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(46, 106, 255, 0.2);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideUp 0.5s ease-out 0.7s forwards;
+        }
+        
+        .cta h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        /* Impact stats */
+        .impact-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0 30px;
+        }
+        
+        .impact-stat {
+            flex: 1;
+            min-width: 180px;
+            max-width: 250px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--secondary);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .impact-stat:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .stat-number::after {
+            content: '+';
+            font-size: 1.5rem;
+            position: absolute;
+            top: 0;
+            right: -20px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--dark);
+            line-height: 1.4;
+        }
+        
+        /* Stat animation */
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .impact-stat:nth-child(1) {
+            animation: countUp 0.5s ease-out 0.8s forwards;
+        }
+        
+        .impact-stat:nth-child(2) {
+            animation: countUp 0.5s ease-out 1s forwards;
+        }
+        
+        .impact-stat:nth-child(3) {
+            animation: countUp 0.5s ease-out 1.2s forwards;
+        }
+        
+        .impact-stat:nth-child(4) {
+            animation: countUp 0.5s ease-out 1.4s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">14</div>
+        <h1 class="slide-title">Conclusion & Vision</h1>
+    </div>
+    <div class="slide-content">
+        <div class="conclusion">
+            <h3> PaedagogIA: A paradigm shift for education beyond any single region</h3>
+            
+            <div class="box" style="max-width: 800px; margin: 0 auto;">
+                <i class="icon fas fa-lightbulb"></i>
+                <p style="font-size: 1.2rem; text-align: center;">Our solution doesn't just improve the existing system — it fundamentally reimagines it by centering on the identification and treatment of fundamental gaps that limit students' potential, while placing teachers at the heart of the process as key drivers of change and support.</p>
+            </div>
+        </div>
+        
+        
+        <!-- Slogan -->
+        <div style="text-align: center; margin: 50px 0;">
+            <p class="slogan">"Excellence has no level"</p>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+                <i class="fas fa-quote-left" style="color: var(--secondary); margin-right: 10px; opacity: 0.5;"></i>
+                The potential of transforming education makes the journey worthwhile.
+                <i class="fas fa-quote-right" style="color: var(--secondary); margin-left: 10px; opacity: 0.5;"></i>
+            </p>
+        </div>
+        
+ 
+    </div>
+</body>
+</html>

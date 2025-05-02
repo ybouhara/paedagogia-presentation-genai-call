@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Présentation Modulaire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #FAFBFF;
+            overflow: hidden;
+        }
+        
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Navigation styles */
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #1D59E5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .slide-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 1rem;
+            color: var(--primary);
+            z-index: 1000;
+            font-weight: 600;
+            background: #fff;
+            padding: 5px 15px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Iframe to load slides */
+        #slide-frame {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+        
+        /* Loader */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 2000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(46, 106, 255, 0.2);
+            border-top: 5px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        #slide-frame {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <div class="presentation-container">
+        <iframe id="slide-frame" src="slide1.html" title="Slide Content"></iframe>
+    </div>
+
+    <div class="slide-indicator" id="slide-indicator">1/17</div>
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn"><i class="fas fa-chevron-left"></i> Previous</button>
+        <button class="nav-btn" id="next-btn">Next <i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const slideIndicator = document.getElementById('slide-indicator');
+            const slideFrame = document.getElementById('slide-frame');
+            const loader = document.getElementById('loader');
+            
+            let currentSlide = 1;
+            const totalSlides = 17;
+            
+            // Update the slide indicator
+            function updateSlideIndicator() {
+                slideIndicator.textContent = `${currentSlide}/${totalSlides}`;
+            }
+            
+            // Function to load a slide
+            function loadSlide(slideNumber) {
+                // Show loader
+                loader.style.opacity = '1';
+                loader.style.display = 'flex';
+                
+                // Determine which slide file to load
+                let slideFile;
+                
+                slideFile = `slide${slideNumber}.html`;
+                
+                
+                // Update iframe src
+                slideFrame.src = slideFile;
+                
+                // Update current slide number
+                currentSlide = slideNumber;
+                
+                // Update slide indicator
+                updateSlideIndicator();
+                
+                // Hide loader when slide is loaded
+                slideFrame.onload = function() {
+                    loader.style.opacity = '0';
+                    setTimeout(() => { loader.style.display = 'none'; }, 500);
+                };
+            }
+
+            
+            // Go to previous slide
+            function goToPrevSlide() {
+                if (currentSlide > 1) {
+                    loadSlide(currentSlide - 1);
+                }
+            }
+            
+            // Go to next slide
+            function goToNextSlide() {
+                if (currentSlide < totalSlides) {
+                    loadSlide(currentSlide + 1);
+                }
+            }
+            
+            // Button event listeners
+            prevBtn.addEventListener('click', goToPrevSlide);
+            nextBtn.addEventListener('click', goToNextSlide);
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    goToNextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    goToPrevSlide();
+                }
+            });
+            
+            // Initialize
+            updateSlideIndicator();
+            
+            // Hide loader when initial slide is loaded
+            slideFrame.onload = function() {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
+            };
+        });
+    </script>
+</body>
+</html>

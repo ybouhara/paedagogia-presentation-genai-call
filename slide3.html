@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - The Problem in Numbers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Improved data cards */
+        .data-sections {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .data-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .data-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--secondary), #1D59E5);
+            padding: 15px 20px;
+            color: white;
+        }
+        
+        .section-socioeconomic .section-header {
+            background: linear-gradient(135deg, var(--accent), #FF6B93);
+        }
+        
+        .section-ceb .section-header {
+            background: linear-gradient(135deg, var(--warning), #FFD280);
+        }
+        
+        .section-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-header h3 i {
+            font-size: 1.5rem;
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        /* Sequential animation for sections */
+        @keyframes sectionFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .data-section:nth-child(1) {
+            animation: sectionFadeIn 0.5s ease-out 0.1s forwards;
+        }
+        
+        .data-section:nth-child(2) {
+            animation: sectionFadeIn 0.5s ease-out 0.3s forwards;
+        }
+        
+        .data-section:nth-child(3) {
+            animation: sectionFadeIn 0.5s ease-out 0.5s forwards;
+        }
+        
+        /* Stat items */
+        .stat-list {
+            list-style: none;
+        }
+        
+        .stat-item {
+            background: rgba(46, 106, 255, 0.03);
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .section-socioeconomic .stat-item {
+            background: rgba(255, 51, 102, 0.03);
+            border-left: 3px solid var(--accent);
+        }
+        
+        .section-ceb .stat-item {
+            background: rgba(255, 158, 0, 0.03);
+            border-left: 3px solid var(--warning);
+        }
+        
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .stat-item:hover {
+            transform: translateX(5px);
+            background: rgba(46, 106, 255, 0.06);
+        }
+        
+        .section-socioeconomic .stat-item:hover {
+            background: rgba(255, 51, 102, 0.06);
+        }
+        
+        .section-ceb .stat-item:hover {
+            background: rgba(255, 158, 0, 0.06);
+        }
+        
+        .stat-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .stat-icon {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        .section-socioeconomic .stat-icon {
+            color: var(--accent);
+        }
+        
+        .section-ceb .stat-icon {
+            color: var(--warning);
+        }
+        
+        .stat-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Visual progress bars */
+        .stat-bar-container {
+            margin-top: 8px;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .stat-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-socioeconomic .stat-bar {
+            background: linear-gradient(to right, var(--accent), var(--warning));
+        }
+        
+        .section-ceb .stat-bar {
+            background: linear-gradient(to right, var(--warning), var(--success));
+        }
+        
+        .stat-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.3) 50%, 
+                rgba(255,255,255,0.1) 100%
+            );
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Key insight box */
+        .insight-box {
+            margin-top: 30px;
+            background: linear-gradient(135deg, rgba(46, 106, 255, 0.05), rgba(0, 229, 176, 0.05));
+            border-radius: 15px;
+            padding: 25px;
+            border-top: 3px solid;
+            border-image: linear-gradient(to right, var(--secondary), var(--accent));
+            border-image-slice: 1;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: sectionFadeIn 0.5s ease-out 0.7s forwards;
+        }
+        
+        .insight-box h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .insight-box h3 i {
+            color: var(--accent);
+        }
+        
+        .insight-box p {
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Source note */
+        .source-note {
+            font-style: italic;
+            opacity: 0.7;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            padding-left: 15px;
+            border-left: 3px solid var(--secondary);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">03</div>
+        <h1 class="slide-title">The Problem in Numbers</h1>
+    </div>
+    <div class="slide-content">
+        <div class="data-sections">
+            <!-- Academic Delays Section -->
+            <div class="data-section section-academic">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-line"></i> Academic delays and failures</h3>
+                </div>
+                <div class="section-content">
+                    <ul class="stat-list">
+                        <li class="stat-item">
+                            <div class="stat-content">
+                                <div class="stat-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="stat-text">
+                                    <span class="stat-value">47.8%</span> academic delay by final year of secondary education
+                                </div>
+                            </div>
+                            <div class="stat-bar-container">
+                                <div class="stat-bar" style="width: 47.8%;"></div>
+                            </div>
+                        </li>
+                        
+                        <li class="stat-item">
+                            <div class="stat-content">
+                                <div class="stat-icon">
+                                    <i class="fas fa-arrow-trend-up"></i>
+                                </div>
+                                <div class="stat-text">
+                                    Retention jumps from <span class="stat-value">4.7%</span> (1st primary) to <span class="stat-value">16.6%</span> (3rd secondary)
+                                </div>
+                            </div>
+                            <div class="stat-bar-container">
+                                <div class="stat-bar" style="width: 16.6%;"></div>
+                            </div>
+                        </li>
+                        
+                        <li class="stat-item">
+                            <div class="stat-content">
+                                <div class="stat-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <div class="stat-text">
+                                    <span class="stat-value">60%</span> of math difficulties stem from pre-CEB gaps
+                                </div>
+                            </div>
+                            <div class="stat-bar-container">
+                                <div class="stat-bar" style="width: 60%;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Socioeconomic Impact Section -->
+            <div class="data-section section-socioeconomic">
+                <div class="section-header">
+                    <h3><i class="fas fa-balance-scale"></i> Socioeconomic impact</h3>
+                </div>
+                <div class="section-content">
+                    <ul class="stat-list">
+                        <li class="stat-item">
+                            <div class="stat-content">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users-slash"></i>
+                                </div>
+                                <div class="stat-text">
+                                    Disadvantaged students are <span class="stat-value">2.5x</span> more likely to experience academic delay
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="stat-item">
+                            <div class="stat-content">
+                                <div class="stat-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div class="stat-text">
+                                    <span class="stat-value">15-point</span> gap in math scores between low vs. high socioeconomic schools
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- CEB Section -->
+            <div class="data-section section-ceb">
+                <div class="section-header">
+                    <h3><i class="fas fa-graduation-cap"></i> CEB (88.5% pass rate hides reality)</h3>
+                </div>
+                <div class="section-content">
+                    <ul class="stat-list">
+                        <li class="stat-item">
+                            <div class="stat-content">
+                                <div class="stat-icon">
+                                    <i class="fas fa-percent"></i>
+                                </div>
+                                <div class="stat-text">
+                                    <span class="stat-value">10%</span> score below 50/100 in mathematics
+                                </div>
+                            </div>
+                            <div class="stat-bar-container">
+                                <div class="stat-bar" style="width: 10%;"></div>
+                            </div>
+                        </li>
+                        
+                        <li class="stat-item">
+                            <div class="stat-content">
+                                <div class="stat-icon">
+                                    <i class="fas fa-mask"></i>
+                                </div>
+                                <div class="stat-text">
+                                    Early success masks issues emerging later
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Insight Box -->
+        <div class="insight-box">
+            <h3><i class="fas fa-lightbulb"></i> Key insight</h3>
+            <p>Success rates can be misleading indicators of true educational progress. Many students pass tests while carrying unaddressed knowledge gaps that limit their potential.</p>
+        </div>
+        
+        <p class="source-note"><i class="fas fa-book"></i> Source: Education Indicators 2024 - FWB</p>
+    </div>
+</body>
+</html>

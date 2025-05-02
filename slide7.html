@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Our Market Differentiation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Visual comparison diagram */
+        .comparison-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        
+        .competitors-side, .paedagogia-side {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .comparison-divider {
+            height: 400px;
+            width: 3px;
+            background: linear-gradient(to bottom, rgba(46, 106, 255, 0.7), rgba(0, 229, 176, 0.7));
+            position: relative;
+            border-radius: 3px;
+        }
+        
+        .divider-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--secondary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(46, 106, 255, 0.3);
+        }
+        
+        .divider-label i {
+            margin-right: 5px;
+        }
+        
+        .side-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+        
+        /* Competitor bubbles */
+        .competitor-bubbles {
+            position: relative;
+            height: 400px;
+        }
+        
+        .competitor-bubble {
+            position: absolute;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 15px;
+            width: 160px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .competitor-bubble:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .competitor-bubble:nth-child(1) {
+            top: 10%;
+            left: 10%;
+        }
+        
+        .competitor-bubble:nth-child(2) {
+            top: 20%;
+            right: 5%;
+        }
+        
+        .competitor-bubble:nth-child(3) {
+            top: 50%;
+            left: 0;
+        }
+        
+        .competitor-bubble:nth-child(4) {
+            bottom: 15%;
+            left: 25%;
+        }
+        
+        .competitor-bubble:nth-child(5) {
+            bottom: 10%;
+            right: 10%;
+        }
+        
+        .competitor-logo {
+            width: 50px;
+            height: 50px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            overflow: hidden;
+            padding: 5px;
+        }
+        
+        .competitor-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .bubble-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .bubble-description {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        /* PaedagogIA features */
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .feature-item:nth-child(1) {
+            animation: slideIn 0.5s ease-out 0.1s forwards;
+        }
+        
+        .feature-item:nth-child(2) {
+            animation: slideIn 0.5s ease-out 0.2s forwards;
+        }
+        
+        .feature-item:nth-child(3) {
+            animation: slideIn 0.5s ease-out 0.3s forwards;
+        }
+        
+        .feature-item:nth-child(4) {
+            animation: slideIn 0.5s ease-out 0.4s forwards;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            background: var(--secondary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        
+        .feature-content {
+            padding: 15px;
+        }
+        
+        .feature-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(255, 51, 102, 0.3);
+        }
+        
+        .feature-content p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        /* Summary box */
+        .summary-box {
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(46, 106, 255, 0.05), rgba(0, 229, 176, 0.05));
+            border-radius: 15px;
+            text-align: center;
+            border-top: 3px solid;
+            border-image: linear-gradient(to right, var(--secondary), var(--success));
+            border-image-slice: 1;
+        }
+        
+        .summary-box h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .summary-box p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Logo-specific styles */
+        .mathgpt-logo {
+            background: #f0f5ff;
+        }
+        
+        .dreambox-logo {
+            background: #eef4ff;
+        }
+        
+        .carnegie-logo {
+            background: #f0f4ff;
+        }
+        
+        .aleks-logo {
+            background: #f2f6ff;
+        }
+        
+        .photomath-logo {
+            background: #edf3ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">07</div>
+        <h1 class="slide-title">Our Market Differentiation</h1>
+    </div>
+    <div class="slide-content">
+        <div class="comparison-diagram">
+            <!-- Competitors Side -->
+            <div class="competitors-side">
+                <h3 class="side-title">Current Solutions</h3>
+                
+                <div class="competitor-bubbles">
+                    <div class="competitor-bubble">
+                        <div class="competitor-logo mathgpt-logo">
+                            <img src="images/mathgpt-logo.png" alt="MathGPT Pro">
+                            <!-- Replace with your actual image path -->
+                        </div>
+                        <div class="bubble-title">MathGPT Pro</div>
+                        
+                    </div>
+                    
+                    <div class="competitor-bubble">
+                        <div class="competitor-logo dreambox-logo">
+                            <img src="images/dreambox-logo.png" alt="DreamBox">
+                            <!-- Replace with your actual image path -->
+                        </div>
+                        <div class="bubble-title">DreamBox</div>
+                        
+                    </div>
+                    
+                    <div class="competitor-bubble">
+                        <div class="competitor-logo carnegie-logo">
+                            <img src="images/carnegie-logo.png" alt="Carnegie Learning">
+                            <!-- Replace with your actual image path -->
+                        </div>
+                        <div class="bubble-title">Carnegie Learning</div>
+                        
+                    </div>
+                    
+                    <div class="competitor-bubble">
+                        <div class="competitor-logo aleks-logo">
+                            <img src="images/aleks-logo.png" alt="ALEKS">
+                            <!-- Replace with your actual image path -->
+                        </div>
+                        <div class="bubble-title">ALEKS</div>
+                       
+                    </div>
+                    
+                    <div class="competitor-bubble">
+                        <div class="competitor-logo photomath-logo">
+                            <img src="images/photomath-logo.png" alt="Photomath">
+                            <!-- Replace with your actual image path -->
+                        </div>
+                        <div class="bubble-title">Photomath</div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Divider -->
+            <div class="comparison-divider">
+                <div class="divider-label">
+                    <i class="fas fa-arrows-left-right"></i> VS
+                </div>
+            </div>
+            
+            <!-- PaedagogIA Side -->
+            <div class="paedagogia-side">
+                <h3 class="side-title">PaedagogIA</h3>
+                
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Retroactive approach <span class="feature-badge">Unique</span></h4>
+                            <p>Identifying the original source of difficulties, allowing problems to be addressed at their root rather than treating symptoms.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Focus on excellence</h4>
+                            <p>We aim beyond merely meeting minimum standards, to enable each student to reach their full potential.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Teacher-centric design</h4>
+                            <p>Our solution integrates into teachers' daily practice, offering a tool that amplifies their impact without replacing them.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Scalability by design <span class="feature-badge">Flexible</span></h4>
+                            <p>Initially aligned with specific programs but designed to adapt to different educational contexts.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Summary Box -->
+        <div class="summary-box">
+            <h3><i class="fas fa-lightbulb"></i> Our Added Value</h3>
+            <p>Unlike existing solutions that focus on current problems, PaedagogIA analyzes the complete learning history to find and address the origin of difficulties.</p>
+        </div>
+    </div>
+</body>
+</html>

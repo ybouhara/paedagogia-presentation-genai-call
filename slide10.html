@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Social Impact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Introduction text */
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .intro-text p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        /* Impact cards container */
+        .impact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        /* Impact cards */
+        .impact-card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .impact-card:nth-child(1) {
+            animation: slideUp 0.5s ease-out 0.1s forwards;
+        }
+        
+        .impact-card:nth-child(2) {
+            animation: slideUp 0.5s ease-out 0.3s forwards;
+        }
+        
+        .impact-card:nth-child(3) {
+            animation: slideUp 0.5s ease-out 0.5s forwards;
+        }
+        
+        .impact-card:nth-child(4) {
+            animation: slideUp 0.5s ease-out 0.7s forwards;
+        }
+        
+        .impact-header {
+            padding: 20px;
+            background: linear-gradient(to right, var(--secondary), rgba(46, 106, 255, 0.8));
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .impact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .impact-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .impact-content {
+            padding: 20px;
+        }
+        
+        .impact-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .impact-detail {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+        }
+        
+        /* Note section */
+        .impact-note {
+            max-width: 800px;
+            margin: 30px auto 0;
+            padding: 20px;
+            background: rgba(46, 106, 255, 0.05);
+            border-radius: 10px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.9s forwards;
+        }
+        
+        .impact-note p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .impact-note p i {
+            color: var(--accent);
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">10</div>
+        <h1 class="slide-title">Social Impact</h1>
+    </div>
+    <div class="slide-content">
+        <div class="intro-text">
+            <p>PaedagogIA aims to support positive social change in education through thoughtful AI implementation.</p>
+        </div>
+        
+        <div class="impact-container">
+            <!-- Impact Card 1: Educational Gaps -->
+            <div class="impact-card">
+                <div class="impact-header">
+                    <div class="impact-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="impact-title">Educational Equity</h3>
+                </div>
+                <div class="impact-content">
+                    <p class="impact-description">Our approach could help bridge educational gaps across socioeconomic lines by providing personalized mathematics learning resources to all students regardless of background.</p>
+                    <div class="impact-detail">
+                        Working with local community organizations to ensure access for all students, including those in underprivileged areas.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Impact Card 2: Inclusive Education -->
+            <div class="impact-card">
+                <div class="impact-header">
+                    <div class="impact-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="impact-title">Inclusive Learning</h3>
+                </div>
+                <div class="impact-content">
+                    <p class="impact-description">By supporting multiple languages (French, Dutch) and providing simplified language options, we hope to make quality education more accessible to diverse learners.</p>
+                    <div class="impact-detail">
+                        Designed with considerations for non-native speakers, students with disabilities, and underrepresented groups in STEM.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Impact Card 3: Teacher Support -->
+            <div class="impact-card">
+                <div class="impact-header">
+                    <div class="impact-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="impact-title">Teacher Well-Being</h3>
+                </div>
+                <div class="impact-content">
+                    <p class="impact-description">By automating routine aspects of content creation, we aim to help teachers focus more on direct student interaction and high-value teaching activities.</p>
+                    <div class="impact-detail">
+                        Initial estimates suggest up to 25% time savings on material preparation, which could improve work-life balance and job satisfaction.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Impact Card 4: Academic Foundations -->
+            <div class="impact-card">
+                <div class="impact-header">
+                    <div class="impact-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="impact-title">Long-term Success</h3>
+                </div>
+                <div class="impact-content">
+                    <p class="impact-description">By addressing fundamental mathematical concepts early, we hope to strengthen students' academic foundations for future learning.</p>
+                    <div class="impact-detail">
+                        Strong early mathematics skills are linked to better educational outcomes and expanded opportunities for higher education.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="impact-note">
+            <p> While these potential impacts guide our work, we recognize that meaningful educational change requires ongoing collaboration with teachers, students, and the broader community.</p>
+        </div>
+    </div>
+</body>
+</html>

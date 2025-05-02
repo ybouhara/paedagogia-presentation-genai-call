@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaedagogIA - Slide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #0A1128;
+            --secondary: #2E6AFF;
+            --accent: #FF3366;
+            --light: #F0F4FF;
+            --dark: #0A1128;
+            --success: #00E5B0;
+            --warning: #FF9E00;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            height: 100vh;
+            overflow: auto;
+            padding: 30px;
+        }
+        
+        .slide-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .slide-number {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .slide-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .slide-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .slide-content {
+            padding-bottom: 60px; /* Space for navigation in parent */
+        }
+        
+        .slide-content h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .slide-content h3 i {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .slide-content p {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+        
+        .slide-content ul, .slide-content ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            list-style-type: none;
+        }
+        
+        .slide-content li {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .slide-content li i {
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-top: 3px;
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .stat {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .note {
+            font-style: italic;
+            opacity: 0.7;
+            margin-top: 15px;
+            font-size: 1rem;
+            padding-left: 15px;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .two-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .box {
+            background-color: #F5F8FF;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+        
+        .box i.icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2.5rem;
+            color: rgba(46, 106, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .box:hover i.icon {
+            transform: scale(1.2) rotate(10deg);
+            color: rgba(46, 106, 255, 0.2);
+        }
+        
+        .box h4 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .box h4 i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+        
+        .conclusion {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .conclusion h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            justify-content: center;
+        }
+        
+        .slogan {
+            font-size: 1.8rem;
+            font-style: italic;
+            margin: 30px 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        /* Animation for slide transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Icon for bullet points */
+        .icon-bullet {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        /* Badge for key features */
+        .feature-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border-radius: 20px;
+            margin-left: 10px;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(255, 51, 102, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-header">
+        <div class="slide-number">00</div>
+        <h1 class="slide-title">Slide Title</h1>
+        <!-- Optional subtitle: <h2 class="slide-subtitle">Slide Subtitle</h2> -->
+    </div>
+    <div class="slide-content">
+        <!-- Slide content goes here -->
+    </div>
+</body>
+</html>
